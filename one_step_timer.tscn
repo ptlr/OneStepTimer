@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1qsvp47t6c5a"]
+
+[ext_resource type="Script" path="res://one_step_timer.gd" id="1_fnkkw"]
+[ext_resource type="Texture2D" uid="uid://dr8h7clmsymuu" path="res://icons/setting.svg" id="2_4pvjo"]
+[ext_resource type="Texture2D" uid="uid://buhpxl2go2s58" path="res://icons/sync.svg" id="3_4ut4p"]
+
+[node name="OneStepTimer" type="Control"]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_fnkkw")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(640, 440)
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(640, 440)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BtnSetting" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("2_4pvjo")
+icon_alignment = 1
+
+[node name="BtnSync" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_4ut4p")
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnNewTimerControl" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "新建计时器"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BtnNewTimerControl" to="." method="_on_btn_new_timer_control_pressed"]
